@@ -21,6 +21,6 @@ namespace CompanyManagement.Data.Models
 
         public string Documents { get; set; }
 
-        public List<Employee> EmployeesList { get; set; } = new List<Employee>();
+        public List<Employee> Employees { get; set; } = new List<Employee>();
     }
 }

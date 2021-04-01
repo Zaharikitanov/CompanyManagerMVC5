@@ -1,0 +1,60 @@
+﻿@model CompanyManagement.Data.Models.Company
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details for @Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+    <h4>Company</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+    </dl>
+
+</div>
+<h4>Offices</h4>
+<table class="table">
+    <tr>
+        <th>City</th>
+        <th>Employees</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model.Offices)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employees.Count)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Offices", new { id = item.Id }, new { }) |
+                @Html.ActionLink("Details", "Details", "Offices", new { id = item.Id }, new { }) |
+                @Html.ActionLink("Delete", "Delete", "Offices", new { id = item.Id }, new { })
+            </td>
+        </tr>
+    }
+</table>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Create Office", "Create", "Offices", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    </p>

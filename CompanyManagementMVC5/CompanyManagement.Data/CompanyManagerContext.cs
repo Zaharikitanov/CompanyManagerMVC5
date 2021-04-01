@@ -5,7 +5,7 @@ namespace CompanyManagement.Data
 {
     public class CompanyManagerContext : DbContext
     {
-         public DbSet<Company> Companies { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
         public DbSet<Office> Offices { get; set; }
 
@@ -21,7 +21,7 @@ namespace CompanyManagement.Data
                 .HasForeignKey(e => e.CompanyId);
 
             modelBuilder.Entity<Office>()
-                .HasMany(c => c.EmployeesList)
+                .HasMany(c => c.Employees)
                 .WithRequired(e => e.Office)
                 .HasForeignKey(e => e.OfficeId);
         }
