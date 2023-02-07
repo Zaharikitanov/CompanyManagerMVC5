@@ -10,6 +10,7 @@ namespace CompanyManagement.Data.Services.Interfaces
         Task<Office> Create(Office office, Guid companyId);
         Task<Office> Delete(Guid id);
         Task<List<Office>> GetAll();
+        Task<List<Office>> GetAllByCompanyId(Guid Id);
         Task<Office> GetOne(Guid id);
         Task<Office> Update(Office office);
     }

@@ -24,12 +24,25 @@ namespace CompanyManagement.Data.Services
                 .ToListAsync();
         }
 
-        public async Task<Office> GetOne(Guid id)
+        public async Task<List<Office>> GetAllByCompanyId(Guid Id)
         {
             return await _database.Offices
+                .Where(c => c.CompanyId == Id)
+                .Select(c => c)
+                .ToListAsync();
+        }
+
+        public async Task<Office> GetOne(Guid id)
+        {
+            var office = await _database.Offices
                 .Where(c => c.Id == id)
                 .Select(c => c)
                 .FirstOrDefaultAsync();
+            office.Employees = await _database.Employees
+               .Where(o => o.OfficeId == id)
+               .ToListAsync();
+
+            return office;
         }
 
         public async Task<Office> Create(Office office, Guid companyId)

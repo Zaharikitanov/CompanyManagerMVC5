@@ -27,12 +27,22 @@ namespace CompanyManagement.Data.Services
         public async Task<Company> GetOne(Guid id)
         {
             var company = await _database.Companies
+                .AsNoTracking()
                 .Where(c => c.Id == id)
-                .Select(c => c)
                 .FirstOrDefaultAsync();
             company.Offices = await _database.Offices
+                .AsNoTracking()
                 .Where(o => o.CompanyId == id)
                 .ToListAsync();
+
+            foreach (var item in company.Offices)
+            {
+                item.Employees = await _database.Employees
+                    .AsNoTracking()
+                    .Where(e => e.OfficeId == item.Id)
+                    .ToListAsync();
+            }
+
             return company;
         }
 

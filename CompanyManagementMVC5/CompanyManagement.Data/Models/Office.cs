@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CompanyManagement.Data.Models
 {
@@ -15,8 +16,10 @@ namespace CompanyManagement.Data.Models
 
         public string Street { get; set; }
 
+        [Display(Name = "Street Number")]
         public int StreetNumber { get; set; }
 
+        [Display(Name = "Headquarters")]
         public bool IsHeadquarters { get; set; }
 
         public string Documents { get; set; }

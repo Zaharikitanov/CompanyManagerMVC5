@@ -190,11 +190,14 @@
     <Content Include="Views\Offices\Edit.cshtml" />
     <Content Include="Views\Offices\Delete.cshtml" />
     <Content Include="Views\Offices\Details.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\profile_pictures\" />
     <Folder Include="Models\Companies\" />
-    <Folder Include="Views\Employees\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

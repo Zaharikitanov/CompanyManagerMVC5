@@ -3,6 +3,7 @@ using CompanyManagement.Data.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,7 +35,10 @@ namespace CompanyManagement.Data.Services
 
         public async Task<Employee> Create(Employee employee)
         {
-            employee.Id = Guid.NewGuid();
+            if (employee.StartingDate == DateTime.MinValue)
+            {
+                employee.StartingDate = DateTime.Now;
+            }
             _database.Employees.Add(employee);
             await _database.SaveChangesAsync();
             return employee;
@@ -48,9 +52,13 @@ namespace CompanyManagement.Data.Services
             return employee;
         }
 
-        public async Task<Employee> Delete(Guid id)
+        public async Task<Employee> Delete(Guid id, string profileImagePath)
         {
             var employee = _database.Employees.Find(id);
+            if (!string.IsNullOrEmpty(profileImagePath))
+            {
+                File.Delete(profileImagePath);
+            }
             _database.Employees.Remove(employee);
             await _database.SaveChangesAsync();
 

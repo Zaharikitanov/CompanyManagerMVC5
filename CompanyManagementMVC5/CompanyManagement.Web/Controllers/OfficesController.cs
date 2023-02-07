@@ -36,8 +36,9 @@ namespace CompanyManagement.Web.Controllers
         }
 
         // GET: Offices/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid id)
         {
+            ViewBag.CompanyId = id;
             return View();
         }
 

@@ -60,7 +60,33 @@
 
     </dl>
 </div>
+<h4>Employees</h4>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Experience</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model.Employees)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExperienceLevel)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Employees", new { id = item.Id, companyId = item.CompanyId }, new { }) |
+                @Html.ActionLink("Details", "Details", "Employees", new { id = item.Id }, new { }) |
+                @Html.ActionLink("Delete", "Delete", "Employees", new { id = item.Id, officeId = item.OfficeId }, new { })
+            </td>
+        </tr>
+    }
+</table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, companyId = Model.CompanyId }, new { @class = "btn btn-default" })
     @Html.ActionLink("Back to List", "Details", "Companies", new { id = Model.CompanyId }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Create Employee", "Create", "Employees", new { officeId = Model.Id, companyId = Model.CompanyId }, new { @class = "btn btn-primary" })
 </p>
